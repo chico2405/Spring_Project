@@ -36,6 +36,13 @@ A interface do Swagger permite visualizar e testar todos os endpoints de forma i
 
 ## Como Executar o Projeto
 
+    -Como ADMIN:
+            -username: admin@emai.com
+            -senha:password
+
+    -Como USER:
+            -username: user@emai.com
+            -senha:password
 ### Pré-requisitos
 
 - JDK 17 ou superior.
@@ -55,11 +62,7 @@ A interface do Swagger permite visualizar e testar todos os endpoints de forma i
     cd biblioteca
     ```
 
-3. Execute o projeto usando o Maven Wrapper:
-
-    ```bash
-    ./mvnw spring-boot:run
-    ```
+3. Rode o arquivo BibliotecaApplication.java
 
 4. A API estará disponível em [http://localhost:8080](http://localhost:8080).
 
