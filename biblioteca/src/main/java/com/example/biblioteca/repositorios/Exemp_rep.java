@@ -1,12 +1,13 @@
 package com.example.biblioteca.repositorios;
 
 import com.example.biblioteca.entidades.Exemplares;
-import com.example.biblioteca.entidades.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
+@Repository
 public interface Exemp_rep extends JpaRepository<Exemplares, Long> {
-    Exemplares findFirstByLivroIdAndEmprestadoFalse(Long livroID);
-    boolean exists_ByLivroId_AndEmprestadoIsFalse(Long livroID);
+    public boolean existsByLivro_Id_AndEmprestadoIsFalse(Long livroID);
+    public boolean existsByLivro_Id_AndEmprestadoIsTrue(Long livroID);
+    public Integer countByLivro_Id_AndEmprestadoIsFalse(Long livroId);
+    public void deleteByLivro_Id_AndEmprestadoIsFalse(Long livroId);
 }

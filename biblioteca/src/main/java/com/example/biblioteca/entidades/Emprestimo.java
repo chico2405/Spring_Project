@@ -4,9 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Emprestimo {
@@ -14,13 +15,20 @@ public class Emprestimo {
     private Long id;
 
     @ManyToOne
+    @NotNull
     private User usuario;
 
     @ManyToOne
+    @NotNull
     private Exemplares exemplar ;
 
+    @NotNull
     private LocalDate  data_emprestimo;
-    private LocalDate  data_dev;
+
+    @NotNull
+    private LocalDate  dataDev;
+
+    private boolean devolvido = false;
 
     public Exemplares getExemplar() {
         return exemplar;
@@ -35,7 +43,7 @@ public class Emprestimo {
     }
 
     public LocalDate  getData_dev() {
-        return data_dev;
+        return dataDev;
     }
 
     public void setExemplar(Exemplares exemplar) {
@@ -51,8 +59,17 @@ public class Emprestimo {
     }
 
     public void setData_dev(LocalDate  data_dev) {
-        this.data_dev = data_dev;
+        this.dataDev = data_dev;
     }
+
+    public boolean isDevolvido() {
+        return devolvido;
+    }
+
+    public void setDevolvido(boolean devolvido) {
+        this.devolvido = devolvido;
+    }
+
 
 
 
