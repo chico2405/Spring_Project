@@ -18,9 +18,9 @@ public class Exemplar_Controller {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> AdicionarExemplar(@Valid @RequestBody Criar_Exemplar_DTO dto){
-        exemplar_service.add_exemplar(dto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Exemplar_DTO> AdicionarExemplar(@Valid @RequestBody Criar_Exemplar_DTO dto){
+        Exemplar_DTO dtoex = exemplar_service.add_exemplar(dto);
+        return ResponseEntity.ok(dtoex);
     }
 
     @GetMapping

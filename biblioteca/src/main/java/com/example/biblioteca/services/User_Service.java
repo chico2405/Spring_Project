@@ -73,6 +73,13 @@ public class User_Service {
             usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
+        if (dto.getRoles() != null && !dto.getRoles().isEmpty()) {
+            Set<Role> roles = dto.getRoles().stream()
+                    .map(Role::valueOf)
+                    .collect(Collectors.toSet());
+            usuario.setRoles(roles);
+        }
+
 
         userRepository.save(usuario);
 

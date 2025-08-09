@@ -3,7 +3,9 @@ package com.example.biblioteca.DTO;
 import com.example.biblioteca.entidades.Exemplares;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
+@Getter
 public class Exemplar_DTO {
 
     @Id
