@@ -36,6 +36,13 @@ A interface do Swagger permite visualizar e testar todos os endpoints de forma i
 
 ## Como Executar o Projeto
 
+    -Como ADMIN:
+            -username: admin@emai.com
+            -senha:password
+
+    -Como USER:
+            -username: user@emai.com
+            -senha:password
 ### Pré-requisitos
 
 - JDK 17 ou superior.
