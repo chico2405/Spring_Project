@@ -40,7 +40,7 @@ public class DataInitializer implements CommandLineRunner {
             User_Update_DTO adminDto = new User_Update_DTO();
             adminDto.setNome("Admin User");
             adminDto.setEmail("admin@email.com");
-            adminDto.setPassword("password"); // O serviço irá criptografar
+            adminDto.setPassword("password");
             adminDto.setRoles(List.of("ADMIN", "USER"));
             userService.Criar_User(adminDto);
 

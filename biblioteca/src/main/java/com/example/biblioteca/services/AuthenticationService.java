@@ -28,7 +28,7 @@ public class AuthenticationService implements UserDetailsService {
                 user.getEmail(),
                 user.getPassword(),
                 user.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                         .collect(Collectors.toList())
         );
 

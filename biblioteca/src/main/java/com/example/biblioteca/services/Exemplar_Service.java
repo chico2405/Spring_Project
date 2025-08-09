@@ -10,6 +10,9 @@ import com.example.biblioteca.repositorios.Livro_rep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class Exemplar_Service {
     @Autowired
@@ -25,5 +28,12 @@ public class Exemplar_Service {
         Exemplares exemplarSalvo = exempRepo.save(novoExemplar);
         return new Exemplar_DTO(exemplarSalvo);
 
+    }
+
+    public List<Exemplar_DTO> listarTodos(){
+        List<Exemplares> exemp = exempRepo.findAll();
+        return exemp.stream()
+                .map(Exemplar_DTO::new)
+                .collect(Collectors.toList());
     }
 }

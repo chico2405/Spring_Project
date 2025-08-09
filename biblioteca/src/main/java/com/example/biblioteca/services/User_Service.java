@@ -2,6 +2,7 @@ package com.example.biblioteca.services;
 
 import com.example.biblioteca.DTO.User_Update_DTO;
 import com.example.biblioteca.DTO.User_DTO;
+import com.example.biblioteca.entidades.Role;
 import com.example.biblioteca.entidades.User;
 import com.example.biblioteca.exeptions.NotFound;
 import com.example.biblioteca.repositorios.User_rep;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +44,10 @@ public class User_Service {
         User novoUser = new User();
         novoUser.setNome(dados.getNome());
         novoUser.setEmail(dados.getEmail());
-        novoUser.setRoles(dados.getRoles());
+        Set<Role> roles = dados.getRoles().stream()
+                .map(Role::valueOf)
+                .collect(Collectors.toSet());
+        novoUser.setRoles(roles);
         novoUser.setPassword(passwordEncoder.encode(dados.getPassword()));
         userRepository.save(novoUser);
         return new User_DTO(novoUser);
@@ -68,9 +73,6 @@ public class User_Service {
             usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
-        if (dto.getRoles() != null && !dto.getRoles().isEmpty()) {
-            usuario.setRoles(dto.getRoles());
-        }
 
         userRepository.save(usuario);
 

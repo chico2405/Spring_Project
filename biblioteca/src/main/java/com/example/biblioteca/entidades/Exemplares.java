@@ -30,6 +30,7 @@ public class Exemplares {
         return livro;
     }
 
+
     public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
     }

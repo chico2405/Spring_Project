@@ -28,18 +28,18 @@ public class Dev_Service {
     private Livro_rep repoLivro;
 
     public void Devolver_Livro (Long exemplarID, Long userID){
-        User usuario = repoUser.findById(userID).orElseThrow(() -> new NotFound("Usuário Não Encontrado"));
         Exemplares exemplar = repoExemplar.findById(exemplarID).orElseThrow(() -> new NotFound("Exemplar não existente"));
         Livro livro = exemplar.get_livro();
+        Emprestimo emprestimo = repoEmp.findByExemplar_IdAndUsuario_IdAndDevolvidoFalse(exemplarID, userID);
+        emprestimo.setDevolvido(true);
+        repoEmp.save(emprestimo);
         exemplar.setEmprestado(false);
         repoExemplar.save(exemplar);
         if (!livro.isDisponivel()){
             livro.setDisponivel(true);
             repoLivro.save(livro);
         }
-        Emprestimo emprestimo = repoEmp.findByExemplar_IdAndUsuario_IdAndDevolvidoFalse(exemplarID, userID);
-        emprestimo.setDevolvido(true);
-        repoEmp.save(emprestimo);
+
 
 
     }

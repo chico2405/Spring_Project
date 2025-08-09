@@ -34,11 +34,12 @@ public class Emp_Service {
     public void Fazer_Emp (Long idExemplar, Long idUser){
         Exemplares exemplar  = repoExemplar.findById(idExemplar).orElseThrow(() -> new NotFound("Livro Não Encontrado"));
         Livro livro = exemplar.get_livro();
+        Long idLivro = livro.getId();
         User usuario = repoUser.findById(idUser).orElseThrow(() -> new NotFound("Usuário Não Encontrado"));
         if (repoEmp.existsByUsuario_IdAndDevolvidoFalseAndDataDevBefore(idUser, LocalDate.now())){
             throw new EmprestimoAtrasado("Usuário tem empréstimo atrasado");
         }
-        if (repoEmp.existsByUsuarioIdAndExemplarLivroIdAndDevolvidoFalse(idUser, livro)){
+        if (repoEmp.existsByUsuarioIdAndExemplar_Livro_IdAndDevolvidoFalse(idUser, idLivro)){
             throw new Livro_Repetido_Exception("Usuário já tem um empréstimo desse livro");
         }
         exemplar.setEmprestado(true);

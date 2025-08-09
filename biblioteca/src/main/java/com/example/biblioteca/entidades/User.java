@@ -6,7 +6,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -29,15 +32,11 @@ public class User {
     @NotBlank
     private String password;
 
-    @NotNull
-    private List<String> roles;
-
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "usuario_id"))
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    public List<String> getRoles() {
-        return this.roles;
-    }
+    private Set<Role> roles = new HashSet<>();
 
 
 }

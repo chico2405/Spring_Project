@@ -45,4 +45,9 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
         return ResponseEntity.badRequest().body(erro);
     }
-}
+
+    //@ExceptionHandler
+    //public ResponseEntity<Erro> trataFalhaDev(Falha_Dev_EMP e){
+        //Erro erro = new Errp(e.getMessage(), ))
+    }
+

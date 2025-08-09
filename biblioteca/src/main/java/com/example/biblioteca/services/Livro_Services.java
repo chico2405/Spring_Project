@@ -67,7 +67,7 @@ public class Livro_Services {
     public Livro_Dto Delete_Livro_Disponivel(Long id_livro){
         Livro livro = livro_rep.findById(id_livro)
                 .orElseThrow(() -> new NotFound("Livro com ID " + id_livro + " não encontrado."));
-        if (livro.isDisponivel()){
+        if (!livro.isDisponivel()){
             throw new Deletar_Livro_Emprestado("Livro com exemplares não devolvidos");
         }
         exemp_rep.deleteByLivro_Id_AndEmprestadoIsFalse(id_livro);

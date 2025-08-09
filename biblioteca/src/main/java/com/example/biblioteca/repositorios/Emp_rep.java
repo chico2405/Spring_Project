@@ -10,6 +10,6 @@ import java.time.LocalDate;
 public interface Emp_rep extends JpaRepository<Emprestimo, Long> {
     public boolean existsByUsuario_IdAndDevolvidoFalseAndDataDevBefore(Long usuarioId, LocalDate hoje);
     public Emprestimo findByExemplar_IdAndUsuario_IdAndDevolvidoFalse(Long exemplarId, Long usuarioId);
-    public boolean existsByUsuarioIdAndExemplarLivroIdAndDevolvidoFalse(Long usuarioId, Livro livro);
+    public boolean existsByUsuarioIdAndExemplar_Livro_IdAndDevolvidoFalse(Long usuarioId, Long livroId);
 
 }

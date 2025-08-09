@@ -27,6 +27,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/livros/**").hasRole("ADMIN")
                         .requestMatchers("/adicionar-exemplar").hasRole("ADMIN")
                         .requestMatchers("/").permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
 

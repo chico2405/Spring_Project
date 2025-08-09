@@ -1,23 +1,31 @@
 package com.example.biblioteca.DTO;
 
 import com.example.biblioteca.entidades.Exemplares;
-import com.example.biblioteca.entidades.Livro;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 public class Exemplar_DTO {
+
     @Id
     @NotNull
     private Long id;
 
+    private final String livroTitulo;
 
     @NotNull
     private Long livroId;
 
+    private String status;
+
     public Exemplar_DTO(Exemplares exemplar) {
         this.id = exemplar.getId();
         this.livroId = exemplar.getLivro().getId();
+        this.livroTitulo = exemplar.get_livro().getTitulo();
+        if (exemplar.isEmprestado()){
+            this.status = "Emprestado";
+        }
+        else{
+            this.status = "Disponível";
+        }
     }
 }

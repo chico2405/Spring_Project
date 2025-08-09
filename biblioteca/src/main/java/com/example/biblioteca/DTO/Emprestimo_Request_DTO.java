@@ -11,12 +11,11 @@ import lombok.Setter;
 public class Emprestimo_Request_DTO {
     @NotNull
     @Min(1)
-    @NotBlank
     private Long id_User;
 
     @NotNull
     @Min(1)
-    @NotBlank
+
     private Long id_exemplar;
 
 
